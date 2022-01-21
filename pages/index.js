@@ -8,5 +8,5 @@ import IndexRes from "src/Index.js";
 // If you don't do this, your Fast-Refresh will
 // not work!
 export default function Index(props) {
-  return <IndexRes {...props}/>;
+  return <IndexRes {...props} />;
 }

@@ -1,0 +1,76 @@
+rescript = 1
+g_finger := /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/reason-react/lib/ocaml/install.stamp
+cleaner = /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/gentype/gentype.exe
+rule astj
+  command = /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/bs-platform/darwin/bsc.exe  -warn-error +101+8 -bs-v 9.0.1 -bs-jsx 3 -bs-super-errors -bs-g -absname -bs-ast -o $out $i
+o src/404.ast : astj ../../src/404.res
+rule deps
+  command = /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/bs-platform/darwin/bsb_helper.exe -hash ea64a036be58ca5bb3980a6c9453ec49 $in
+  restat = 1
+o src/404.d : deps src/404.ast src/404.iast
+o src/404.iast : astj ../../src/404.resi
+rule mi
+  command = /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/bs-platform/darwin/bsc.exe -I src/components -I src/layouts -I src/lib -I src/bindings -I src -I /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/reason-react/lib/ocaml -bs-super-errors -bs-g  -warn-error +101+8 -bs-gentype /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/gentype/gentype.exe -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/404.cmi : mi src/404.iast
+rule mj
+  command = /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/bs-platform/darwin/bsc.exe -bs-read-cmi -I src/components -I src/layouts -I src/lib -I src/bindings -I src -I /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/reason-react/lib/ocaml -bs-super-errors -bs-g  -warn-error +101+8 -bs-gentype /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/gentype/gentype.exe -bs-package-name rescript-nextjs-template -bs-package-output es6:$in_d:.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/404.cmj ../../src/404.js : mj src/404.ast src/404.cmi
+o src/App.ast : astj ../../src/App.res
+o src/App.d : deps src/App.ast src/App.iast
+o src/App.iast : astj ../../src/App.resi
+o src/App.cmi : mi src/App.iast
+o src/App.cmj ../../src/App.js : mj src/App.ast src/App.cmi
+o src/[id].ast : astj ../../src/[id].res
+o src/[id].d : deps src/[id].ast src/[id].iast
+o src/[id].iast : astj ../../src/[id].resi
+o src/[id].cmi : mi src/[id].iast
+o src/[id].cmj ../../src/[id].js : mj src/[id].ast src/[id].cmi
+o src/Index.ast : astj ../../src/Index.res
+o src/Index.d : deps src/Index.ast src/Index.iast
+o src/Index.iast : astj ../../src/Index.resi
+o src/Index.cmi : mi src/Index.iast
+o src/Index.cmj ../../src/Index.js : mj src/Index.ast src/Index.cmi
+o src/bindings/Next.ast : astj ../../src/bindings/Next.res
+o src/bindings/Next.d : deps src/bindings/Next.ast
+rule mij
+  command = /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/bs-platform/darwin/bsc.exe -I src/components -I src/layouts -I src/lib -I src/bindings -I src -I /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/reason-react/lib/ocaml -bs-super-errors -bs-g  -warn-error +101+8 -bs-gentype /Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/gentype/gentype.exe -bs-package-name rescript-nextjs-template -bs-package-output es6:$in_d:.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/bindings/Next.cmj src/bindings/Next.cmi ../../src/bindings/Next.js : mij src/bindings/Next.ast
+o src/bindings/Node.ast : astj ../../src/bindings/Node.res
+o src/bindings/Node.d : deps src/bindings/Node.ast
+o src/bindings/Node.cmj src/bindings/Node.cmi ../../src/bindings/Node.js : mij src/bindings/Node.ast
+o src/bindings/Marked.ast : astj ../../src/bindings/Marked.res
+o src/bindings/Marked.d : deps src/bindings/Marked.ast
+o src/bindings/Marked.cmj src/bindings/Marked.cmi ../../src/bindings/Marked.js : mij src/bindings/Marked.ast
+o src/bindings/DateFns.ast : astj ../../src/bindings/DateFns.res
+o src/bindings/DateFns.d : deps src/bindings/DateFns.ast
+o src/bindings/DateFns.cmj src/bindings/DateFns.cmi ../../src/bindings/DateFns.js : mij src/bindings/DateFns.ast
+o src/bindings/Typeline.ast : astj ../../src/bindings/Typeline.res
+o src/bindings/Typeline.d : deps src/bindings/Typeline.ast
+o src/bindings/Typeline.cmj src/bindings/Typeline.cmi ../../src/bindings/Typeline.js : mij src/bindings/Typeline.ast
+o src/bindings/GrayMatter.ast : astj ../../src/bindings/GrayMatter.res
+o src/bindings/GrayMatter.d : deps src/bindings/GrayMatter.ast
+o src/bindings/GrayMatter.cmj src/bindings/GrayMatter.cmi ../../src/bindings/GrayMatter.js : mij src/bindings/GrayMatter.ast
+o src/lib/Post.ast : astj ../../src/lib/Post.res
+o src/lib/Post.d : deps src/lib/Post.ast
+o src/lib/Post.cmj src/lib/Post.cmi ../../src/lib/Post.js : mij src/lib/Post.ast
+o src/lib/MetaData.ast : astj ../../src/lib/MetaData.res
+o src/lib/MetaData.d : deps src/lib/MetaData.ast
+o src/lib/MetaData.cmj src/lib/MetaData.cmi ../../src/lib/MetaData.js : mij src/lib/MetaData.ast
+o src/lib/MarkdownRenderer.ast : astj ../../src/lib/MarkdownRenderer.res
+o src/lib/MarkdownRenderer.d : deps src/lib/MarkdownRenderer.ast
+o src/lib/MarkdownRenderer.cmj src/lib/MarkdownRenderer.cmi ../../src/lib/MarkdownRenderer.js : mij src/lib/MarkdownRenderer.ast
+o src/layouts/MainLayout.ast : astj ../../src/layouts/MainLayout.res
+o src/layouts/MainLayout.d : deps src/layouts/MainLayout.ast
+o src/layouts/MainLayout.cmj src/layouts/MainLayout.cmi ../../src/layouts/MainLayout.js : mij src/layouts/MainLayout.ast
+o src/components/Link.ast : astj ../../src/components/Link.res
+o src/components/Link.d : deps src/components/Link.ast
+o src/components/Link.cmj src/components/Link.cmi ../../src/components/Link.js : mij src/components/Link.ast
+o src/components/Time.ast : astj ../../src/components/Time.res
+o src/components/Time.d : deps src/components/Time.ast
+o src/components/Time.cmj src/components/Time.cmi ../../src/components/Time.js : mij src/components/Time.ast

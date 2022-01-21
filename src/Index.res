@@ -4,7 +4,7 @@ module P = {
 }
 
 let default = () =>
-  <div>
+  <MainLayout>
     <h1 className="text-3xl font-semibold"> {"What is this about?"->ReasonReact.string} </h1>
     <P>
       {React.string(j` This is a simple template for a Next
@@ -16,4 +16,4 @@ let default = () =>
 cd my-project
 rm -rf .git`)} //github.com/ryyppy/nextjs-default.git my-project
     </pre>
-  </div>
+  </MainLayout>

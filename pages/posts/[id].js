@@ -1,7 +1,7 @@
-import ExamplesRes from "src/Examples.js";
+import PostRes from "src/[id].js";
 
 // This can be re-exported as is (no Fast-Refresh issues)
-export { getServerSideProps } from "src/Examples.js";
+export { getStaticProps, getStaticPaths } from "src/[id].js";
 
 // Note:
 // We need to wrap the make call with
@@ -10,6 +10,6 @@ export { getServerSideProps } from "src/Examples.js";
 //
 // If you don't do this, your Fast-Refresh will
 // not work!
-export default function Examples(props) {
-  return <ExamplesRes {...props}/>;
+export default function Post(props) {
+  return <PostRes {...props} />;
 }

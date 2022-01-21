@@ -1,36 +1,39 @@
-module Link = Next.Link
+module Header = {
+  @react.component
+  let make = (~home: option<bool>=?) => {
+    let home' = Belt.Option.getWithDefault(home, false)
+
+    <header>
+      {home'
+        ? <> <h1> <Link href="/"> {MetaData.name->React.string} </Link> </h1> </>
+        : <h3> <Link href="/"> {MetaData.name->React.string} </Link> </h3>}
+    </header>
+  }
+}
 
 module Navigation = {
   @react.component
-  let make = () =>
-    <nav className="p-2 h-12 flex border-b border-gray-200 justify-between items-center text-sm">
-      <Link href="/">
-        <a className="flex items-center w-1/3">
-          <img className="w-5" src="/static/zeit-black-triangle.svg" />
-          <span className="text-xl ml-2 align-middle font-semibold">
-            {React.string("Next")} <span className="text-orange-800"> {React.string("RE")} </span>
-          </span>
-        </a>
-      </Link>
-      <div className="flex w-2/3 justify-end">
-        <Link href="/"> <a className="px-3"> {React.string("Home")} </a> </Link>
-        <Link href="/examples"> <a className="px-3"> {React.string("Examples")} </a> </Link>
-        <a
-          className="px-3 font-bold"
-          target="_blank"
-          href="https://github.com/ryyppy/nextjs-default">
-          {React.string("Github")}
-        </a>
-      </div>
-    </nav>
+  let make = (~home: option<bool>=?) => {
+    let home' = Belt.Option.getWithDefault(home, false)
+    <>
+      {React.string(`home: ${string_of_bool(home')}`)}
+      <ul>
+        <li>
+          <Link href={`https://twitter.com/${MetaData.twitter}`} _external=true>
+            {React.string("twitter")}
+          </Link>
+        </li>
+        <li>
+          <Link href={`https://github.com/${MetaData.github}`} _external=true>
+            {React.string("github")}
+          </Link>
+        </li>
+        <li> <Link href="/rss.xml" _external=true> {"rss"->React.string} </Link> </li>
+      </ul>
+    </>
+  }
 }
 
 @react.component
-let make = (~children) => {
-  let minWidth = ReactDOMRe.Style.make(~minWidth="20rem", ())
-  <div style=minWidth className="flex lg:justify-center">
-    <div className="max-w-5xl w-full lg:w-3/4 text-gray-900 font-base">
-      <Navigation /> <main className="mt-4 mx-4"> children </main>
-    </div>
-  </div>
-}
+let make = (~children: React.element, ~home: option<bool>=?) =>
+  <div> <Header ?home /> <Navigation ?home /> <main> {children} </main> </div>

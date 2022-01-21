@@ -1,0 +1,7 @@
+let author = "Pontus Nagy"
+let name = "p1xelHer0"
+let description = "woo"
+let lang = "en"
+let title = "p1xelHer0.com"
+let twitter = "@p1xelHer0"
+let github = "p1xelHer0"

@@ -12,7 +12,7 @@ module GetServerSideProps = {
   }
 
   // See: https://github.com/zeit/next.js/blob/canary/packages/next/types/index.d.ts
-  type context<'props, 'params, 'previewData> = {
+  type context<'params, 'previewData> = {
     params: Js.t<'params>,
     query: Js.Dict.t<string>,
     preview: option<bool>, // preview is true if the page is in the preview mode and undefined otherwise.
@@ -22,19 +22,21 @@ module GetServerSideProps = {
   }
 
   // The definition of a getServerSideProps function
-  type t<'props, 'params, 'previewData> = context<'props, 'params, 'previewData> => Js.Promise.t<{"props": 'props}>
+  type t<'props, 'params, 'previewData> = context<'params, 'previewData> => Js.Promise.t<{
+    "props": 'props,
+  }>
 }
 
 module GetStaticProps = {
   // See: https://github.com/zeit/next.js/blob/canary/packages/next/types/index.d.ts
-  type context<'props, 'params, 'previewData> = {
+  type context<'params, 'previewData> = {
     params: 'params,
     preview: option<bool>, // preview is true if the page is in the preview mode and undefined otherwise.
     previewData: Js.Nullable.t<'previewData>,
   }
 
   // The definition of a getStaticProps function
-  type t<'props, 'params, 'previewData> = context<'props, 'params, 'previewData> => Js.Promise.t<{
+  type t<'props, 'params, 'previewData> = context<'params, 'previewData> => Js.Promise.t<{
     "props": 'props,
   }>
 }
@@ -137,7 +139,7 @@ module Dynamic = {
     loading: unit => React.element,
   }
 
-  /** Test **/
+  /* * Test * */
   @module("next/dynamic")
   external dynamic: (unit => Js.Promise.t<'a>, options) => 'a = "default"
 

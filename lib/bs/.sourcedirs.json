@@ -1,0 +1,1 @@
+{ "dirs" : [ "src" , "src/bindings" , "src/lib" , "src/layouts" , "src/components" ] , "pkgs" : [ [ "gentype" , "/Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/gentype" ] , [ "reason-react" , "/Users/pontusnagy/Dev/Repo/Private/rescript-nextjs-template/node_modules/reason-react" ] ] , "generated" : [] }
